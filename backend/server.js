@@ -3,10 +3,11 @@ const debug = require("debug")("node-angular");
 const http = require("http");
 
 const port = process.env.PORT || "3000";
+app.set("port", port);
+
 const server = http.createServer(app);
 
 
-// app.set("port", port);
 
 // const normalizePort = val => {
 //   var port = parseInt(val, 10);
