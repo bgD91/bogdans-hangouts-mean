@@ -11,7 +11,7 @@ const app = express();
 mongoose
   .connect(
     "mongodb+srv://bgd321:" +
-      process.env.MONGO_ATLAS_PW +
+      process.env.MONGO_ATLAS_PASSWORD +
       "@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority",
     {
       useCreateIndex: true,
@@ -22,7 +22,8 @@ mongoose
   .then(() => {
     console.log("Connected to database!");
   })
-  .catch(() => {
+  .catch((error) => {
+    console.log(error);
     console.log("Connection failed!");
   });
 
