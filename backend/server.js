@@ -2,10 +2,10 @@ const app = require("./app");
 const debug = require("debug")("node-angular");
 const http = require("http");
 
-const server = http.createServer(process.env.PORT || 3000);
+const port = process.env.PORT || "3000";
+const server = http.createServer({port});
 
 
-// const port = normalizePort(process.env.PORT || "3000");
 // app.set("port", port);
 
 // const normalizePort = val => {

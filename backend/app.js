@@ -1,6 +1,5 @@
 const path = require("path");
 const express = require("express");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const postsRoutes = require("./routes/posts");
@@ -10,9 +9,14 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://max:" +
+    "mongodb+srv://bgd321:" +
       process.env.MONGO_ATLAS_PW +
-      "@cluster0-ntrwp.mongodb.net/node-angular"
+      "@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
   )
   .then(() => {
     console.log("Connected to database!");
@@ -21,8 +25,8 @@ mongoose
     console.log("Connection failed!");
   });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use("/images", express.static(path.join("images")));
 
 app.use((req, res, next) => {
@@ -38,10 +42,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", express.static(path.join(__dirname, "../dist/your_app_name")));
+app.use("/", express.static(path.join(__dirname, "../dist/chat-system-mean")));
 
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "../dist/your_app_name/index.html"));
+  res.sendFile(path.join(__dirname, "../dist/chat-system-mean/index.html"));
 });
 
 app.use("/api/posts", postsRoutes);
