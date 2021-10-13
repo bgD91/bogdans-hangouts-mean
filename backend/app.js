@@ -11,7 +11,7 @@ const app = express();
 mongoose
   .connect(
     "mongodb+srv://bgd321:" +
-      process.env.MONGO_ATLAS_PASSWORD +
+      "N6kl59YdmuM6sFrQ" +
       "@cluster0.flgly.mongodb.net/Cluster0?retryWrites=true&w=majority",
     {
       useCreateIndex: true,
