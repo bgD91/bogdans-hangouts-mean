@@ -2,21 +2,27 @@ const app = require("./app");
 const debug = require("debug")("node-angular");
 const http = require("http");
 
-const normalizePort = val => {
-  var port = parseInt(val, 10);
+const server = http.createServer(process.env.PORT || 3000);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+// const port = normalizePort(process.env.PORT || "3000");
+// app.set("port", port);
 
-  return false;
-};
+// const normalizePort = val => {
+//   var port = parseInt(val, 10);
+
+//   if (isNaN(port)) {
+//     // named pipe
+//     return val;
+//   }
+
+//   if (port >= 0) {
+//     // port number
+//     return port;
+//   }
+
+//   return false;
+// };
 
 const onError = error => {
   if (error.syscall !== "listen") {
@@ -43,10 +49,6 @@ const onListening = () => {
   debug("Listening on " + bind);
 };
 
-// const port = normalizePort(process.env.PORT || "3000");
-// app.set("port", port);
-
-const server = http.createServer(process.env.PORT || 3000);
 server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port);
