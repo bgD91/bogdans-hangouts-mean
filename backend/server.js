@@ -3,7 +3,7 @@ const debug = require("debug")("node-angular");
 const http = require("http");
 
 const port = process.env.PORT || "3000";
-const server = http.createServer({port});
+const server = http.createServer(app);
 
 
 // app.set("port", port);
